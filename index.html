@@ -19,16 +19,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 wow slideInLeft" ng-repeat="Object in albumArray" ng-class="{ 'text-info': $even, 'text-danger': $odd }">
+            <div class="col-md-4 wow slideInLeft text-center" ng-repeat="Object in albumArray" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
                 <div class="panel panel-default ">
-                    <div class="panel-heading">Title: <span ng-repeat="label in Object.title">{{label}}</span></div>
+                    <div class="panel-heading" ng-repeat="label in Object.title">{{label}}</div>
                     <div class="panel-body">
-                        <div class="well well-lg">
+                        <div class="well well-sm">
                             <p class="wow bounceIn" >Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
                             <p class="wow fadeIn">Album ID: <span ng-repeat="arttibutes in Object.id">{{arttibutes['im:id']}}</span></p>
-                            <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">
+                            <a target="_blank" href="" ng-repeat="attributes in Object.link" ng-href="{{attributes.href}}">
+                                <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">
+                            </a>
                             <p>Released: <span ng-repeat="attributes in Object['im:releaseDate']" >{{attributes.label}}</span></p>
-                            <p ng-repeat="label in Object.rights">{{label}}</p>
+                            <p class="trunk" ng-repeat="label in Object.rights">{{label}}</p>
                         </div>
                     </div>
                 </div>

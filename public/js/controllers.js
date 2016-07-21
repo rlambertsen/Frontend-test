@@ -10,7 +10,7 @@ angular.module('tester.controllers', [])
         url: 'https://itunes.apple.com/us/rss/topalbums/limit=100/json'
     }).then(function (response) {
         $scope.albumArray = response.data.feed.entry;
-        console.log($scope.albumArray[0].title.label);
+        console.log($scope.albumArray);
     });
     new WOW().init();
 
