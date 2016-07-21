@@ -1,1 +1,1 @@
-angular.module('tester', ['ngMaterial', 'tester.controllers' ])
+angular.module('tester', ['tester.controllers', 'ngAnimate'])

@@ -1,0 +1,11 @@
+.animate-enter {
+	-webkit-transition: 1s linear all; /* Chrome */
+	transition: 1s linear all;
+	opacity: 0;
+}
+ 
+.animate-enter.animate-enter-active {
+	opacity: 1;
+}
+.hidden { visibility: hidden; }
+.fadeInIn { transition: all 300ms ease-in 2s; }

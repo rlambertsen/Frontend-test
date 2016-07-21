@@ -1,10 +1,17 @@
 angular.module('tester.controllers', [])
-.controller('AppCtrl', function($scope) {
-  $scope.imagePath = 'img/washedout.png';
+//
+//
+.controller('AppCtrl', function($scope, $http) { // Main Controller
+    $scope.albumArray = []
+    $http({
+        method: 'GET',
+        url: 'https://itunes.apple.com/us/rss/topalbums/limit=100/json'
+    }).then(function (response) {
+        $scope.albumArray = response.data.feed.entry;
+        console.log($scope.albumArray);
+    });
+
 })
-.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
-  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
-});
+//
+//
+
