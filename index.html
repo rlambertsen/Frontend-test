@@ -3,34 +3,74 @@
   <link rel="stylesheet" href="./public/css/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   <link rel="stylesheet" href="./public/css/animate.css">
   <title>Test App for Exzeo</title>
 </head>
   <body ng-app="tester">
-    <div class="container" ng-controller="AppCtrl">
-        <div class="row">
-            <div class="col-lg-12 form-group">
-                <div class="input-group">
-                    <input type="text" ng-model="search" class="search-query form-control">
-                    <span class="input-group-btn">
-                        <button  class="btn btn-default">Search</button>
-                    </span>
-                </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">itunes Top 100</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs1">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
             </div>
         </div>
+    </nav>
+    <div class="container-fluid" ng-controller="AppCtrl">
         <div class="row">
-            <div class="col-md-4 wow slideInLeft text-center" ng-repeat="Object in albumArray" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
-                <div class="panel panel-default ">
-                    <div class="panel-heading" ng-repeat="label in Object.title">{{label}}</div>
-                    <div class="panel-body">
-                        <div class="well well-sm">
-                            <p class="wow bounceIn" >Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
-                            <p class="wow fadeIn">Album ID: <span ng-repeat="arttibutes in Object.id">{{arttibutes['im:id']}}</span></p>
-                            <a target="_blank" href="" ng-repeat="attributes in Object.link" ng-href="{{attributes.href}}">
-                                <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">
-                            </a>
-                            <p>Released: <span ng-repeat="attributes in Object['im:releaseDate']" >{{attributes.label}}</span></p>
-                            <p class="trunk" ng-repeat="label in Object.rights">{{label}}</p>
+            <div class="col-lg-3">
+                <div class="row ">
+                    <div class="col-lg-12"><label class="text-center center-block">Favorites!!</label></div>
+                    <div class="col-md-12 wow slideInLeft text-center" ng-repeat="Object in fav track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }" sticky>
+                        <div class="panel panel-default ">
+                            <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
+                            <div class="panel-body">
+                                <div class="well well-sm">
+                                    <p class="wow bounceIn" >Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
+                                    <p class="wow fadeIn">Album ID: <span ng-repeat="arttibutes in Object.id">{{arttibutes['im:id']}}</span></p>
+                                    <a target="_blank" href="" ng-repeat="attributes in Object.link" ng-href="{{attributes.href}}">
+                                        <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">
+                                    </a>
+                                    <p>Released: <span ng-repeat="attributes in Object['im:releaseDate']" >{{attributes.label}}</span></p>
+                                    <p class="trunk" ng-repeat="label in Object.rights">{{label}}</p>
+                                    <i class="fa fa-trash fa-2x" ng-click="removeItem($index)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 border-left">
+                <div class="row">
+                    <div class="col-lg-12"><label class="text-center center-block">Top 100 Albums!!</label></div>
+                    <div class="col-md-4 wow slideInLeft text-center" ng-repeat="Object in albumArray track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
+                        <div class="panel panel-default ">
+                            <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
+                            <div class="panel-body">
+                                <div class="well well-sm">
+                                    <p class="wow bounceIn" >Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
+                                    <p class="wow fadeIn">Album ID: <span ng-repeat="arttibutes in Object.id">{{arttibutes['im:id']}}</span></p>
+                                    <a target="_blank" href="" ng-repeat="attributes in Object.link" ng-href="{{attributes.href}}">
+                                        <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">
+                                    </a>
+                                    <p>Released: <span ng-repeat="attributes in Object['im:releaseDate']" >{{attributes.label}}</span></p>
+                                    <p class="trunk" ng-repeat="label in Object.rights">{{label}}</p>
+                                    <i class="fa fa-heart fa-2x" ng-click="favorite($index)"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,12 +82,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
-  <script src="node_modules/angular-velocity/angular-velocity.min.js"></script>
+  <script src="./public/js/sticky.js"></script>
   <script src="./public/js/app.js"></script>
   <script src="./public/js/controllers.js"></script>
   <script src="./public/js/wow.js"></script>
+  
 </html>
 
 

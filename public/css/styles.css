@@ -3,3 +3,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.border-left{
+	border-left: 1px solid grey;
+}
+.fa{
+	cursor: pointer;
+}
