@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rlambertsen/Frontend-test#readme",
   "dependencies": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "angular-velocity": "^0.3.1"
   }
 }

@@ -1,1 +1,1 @@
-angular.module('tester', ['tester.controllers', 'ngAnimate'])
+angular.module('tester', ['angular-velocity', 'ngAnimate', 'tester.controllers'])

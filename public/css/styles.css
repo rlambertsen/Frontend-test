@@ -7,5 +7,3 @@
 .animate-enter.animate-enter-active {
 	opacity: 1;
 }
-.hidden { visibility: hidden; }
-.fadeInIn { transition: all 300ms ease-in 2s; }
