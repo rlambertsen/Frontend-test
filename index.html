@@ -1,13 +1,13 @@
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="./public/css/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   <link rel="stylesheet" href="./public/css/animate.css">
+  <link rel="stylesheet" href="./public/css/styles.css">
   <title>Test App for Exzeo</title>
 </head>
-  <body ng-app="tester">
+  <body ng-app="tester" ng-controller="AppCtrl">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -28,19 +28,19 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <p>Hey look!! We have the top 100 albums from itunes here!!</p>
-            <p>Heart your favorites</p>
+            <p>We have the top 100 albums from itunes for <span class="text-primary">{{date | date:'MMMM dd yyyy'}}</span></p>
+            <p>Pick your favorites.</p>
         </div>
     </div>
   </div>
 </div>
-    <div class="container-fluid" ng-controller="AppCtrl">
+    <div class="container-fluid">
 
         <div class="row">
             <div class="col-lg-3">
                 <div class="row ">
                     <div class="col-lg-12"><label class="text-center center-block">Favorites!!</label></div>
-                    <div class="col-md-12 wow bounceIn text-center" ng-repeat="Object in fav track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }" sticky media-query="min-width: 1024px">
+                    <div class="col-md-12 wow bounceIn text-center" ng-repeat="Object in fav track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
                         <div class="panel panel-default ">
                             <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
                             <div class="panel-body">
@@ -63,13 +63,13 @@
                 <div class="row">
                     <div class="col-lg-12"><label class="text-center center-block">Top 100 Albums!!</label></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 wow slideInLeft text-center" ng-repeat="Object in albumArray track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
-                        <div class="panel panel-default">
+                <div class="row" >
+                    <div class="col-md-4 wow  text-center" ng-repeat="Object in albumArray track by $index" ng-class="{ 'slideInLeft': $even, 'slideInRight': $odd }">
+                        <div class="panel panel-default" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
                             <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
                             <div class="panel-body">
                                 <div class="well well-sm">
-                                    <p class="wow bounceIn" >Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
+                                    <p class="wow bounceIn">Genre: <span ng-repeat="arttibutes in Object.category">{{arttibutes.label}}</span></p>
                                     <p class="wow fadeIn">Album ID: <span ng-repeat="arttibutes in Object.id">{{arttibutes['im:id']}}</span></p>
                                     <a target="_blank" href="" ng-repeat="attributes in Object.link" ng-href="{{attributes.href}}">
                                         <img ng-repeat="label in Object['im:image'] track by $index" class="wow rotateIn" ng-if="$index % 3 == 2" ng-src="{{label.label}}">

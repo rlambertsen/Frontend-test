@@ -25,6 +25,8 @@ angular.module('tester.controllers', [])
     $scope.removeItem = function($index){
         $scope.fav.splice($index, 1);
     }
+    $scope.date = new Date();
+    console.log($scope.date);
 })
 
 //
