@@ -8,25 +8,23 @@ angular.module('tester.controllers', [])
 
     $rootScope.fav = []
 
-    $scope.status = false;
-
     $http.get('https://itunes.apple.com/us/rss/topalbums/limit=100/json').then(function (response) { //Get the json object
         $scope.albumArray = response.data.feed.entry; //save it to scope
-        console.log($scope.albumArray); //seeing what I saved
     });
 
     new WOW().init(); //animations
 
-    $scope.favorite = function($index){
+    $scope.favorite = function($index){// Favorites logic
         var object = $index;
         $rootScope.fav.push($scope.albumArray[object]);
     }
 
-    $scope.removeItem = function($index){
+    $scope.removeItem = function($index){ //delete favorite
         $scope.fav.splice($index, 1);
     }
-    $scope.date = new Date();
-    console.log($scope.date);
+
+    $scope.date = new Date(); //Todays date
+
 })
 
 //
