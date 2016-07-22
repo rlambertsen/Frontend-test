@@ -11,18 +11,13 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+
                 <a class="navbar-brand" href="#">itunes Top 100</a>
             </div>
             <div class="collapse navbar-collapse" id="bs1">
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -45,7 +40,7 @@
             <div class="col-lg-3">
                 <div class="row ">
                     <div class="col-lg-12"><label class="text-center center-block">Favorites!!</label></div>
-                    <div class="col-md-12 wow slideInLeft text-center" ng-repeat="Object in fav track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }" sticky>
+                    <div class="col-md-12 wow bounceIn text-center" ng-repeat="Object in fav track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }" sticky media-query="min-width: 1024px">
                         <div class="panel panel-default ">
                             <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
                             <div class="panel-body">
@@ -67,8 +62,10 @@
             <div class="col-lg-9 border-left">
                 <div class="row">
                     <div class="col-lg-12"><label class="text-center center-block">Top 100 Albums!!</label></div>
+                </div>
+                <div class="row">
                     <div class="col-md-4 wow slideInLeft text-center" ng-repeat="Object in albumArray track by $index" ng-class="{ 'text-primary': $even, 'text-danger': $odd }">
-                        <div class="panel panel-default ">
+                        <div class="panel panel-default">
                             <div class="panel-heading">#{{$index+1}} | <span ng-repeat="label in Object.title">{{label}}</span></div>
                             <div class="panel-body">
                                 <div class="well well-sm">
@@ -79,7 +76,7 @@
                                     </a>
                                     <p>Released: <span ng-repeat="attributes in Object['im:releaseDate']" >{{attributes.label}}</span></p>
                                     <p class="trunk" ng-repeat="label in Object.rights">{{label}}</p>
-                                    <i class="fa fa-heart fa-2x" ng-click="favorite($index)"></i>
+                                    <p>Add to Favorites: <i class="fa fa-heart fa-2x" ng-click="favorite($index)"></i></p>
                                 </div>
                             </div>
                         </div>
